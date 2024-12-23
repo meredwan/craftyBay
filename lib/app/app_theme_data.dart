@@ -14,22 +14,31 @@ class AppThemeData {
           fontWeight: FontWeight.w600,
         ),
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.themeColor,
+          fixedSize: Size.fromWidth(double.maxFinite),
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          padding: EdgeInsets.symmetric(vertical: 15),
+          textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        ),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         fillColor: Colors.white,
         filled: true,
-        hintStyle: TextStyle(
-          color: Colors.grey,
-          fontWeight: FontWeight.w400
-        ),
+        hintStyle: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),
         contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.themeColor,width: 1),
+          borderSide: BorderSide(color: AppColors.themeColor, width: 1),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.themeColor,width: 1),
+          borderSide: BorderSide(color: AppColors.themeColor, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.themeColor,width: 1),
+          borderSide: BorderSide(color: AppColors.themeColor, width: 1),
         ),
       ),
     );
