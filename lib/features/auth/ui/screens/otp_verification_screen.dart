@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:crafty_bay/app/app_colors.dart';
+import 'package:crafty_bay/app/app_constants.dart';
+import 'package:crafty_bay/features/auth/ui/screens/completed_profile_screen.dart';
 import 'package:crafty_bay/features/common/widgets/app_icon_widget.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
@@ -17,6 +22,28 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   final TextEditingController _otpController = TextEditingController();
 
   final GlobalKey<FormState> _fromKey = GlobalKey<FormState>();
+  RxInt _remainingTime = AppConstants.OtpSendTimeOut.obs;
+  late Timer timer;
+  RxBool _resendCodeEnable = false.obs;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _startResendTimer();
+  }
+
+  void _startResendTimer() {
+    _resendCodeEnable.value = false;
+    _remainingTime.value = AppConstants.OtpSendTimeOut;
+    timer = Timer.periodic(Duration(seconds: 1), (t) {
+      _remainingTime.value--;
+      if (_remainingTime.value == 0) {
+        t.cancel();
+        _resendCodeEnable.value = true;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +95,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               ElevatedButton(
                 onPressed: () {
                   //if (_fromKey.currentState!.validate()) {}
+                  Navigator.pushNamed(context, CompletedProfileScreen.name);
                 },
                 child: Text(
                   "Next",
@@ -76,26 +104,47 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               const SizedBox(
                 height: 20,
               ),
-              RichText(
-                text: TextSpan(
-                    text: "This code will expire in ",
-                    style: TextStyle(color: Colors.grey),
-                    children: [
-                      TextSpan(
-                        text: "120s",
-                        style: TextStyle(
-                          color: AppColors.themeColor,
-                        ),
-                      )
-                    ]),
+              Obx(
+                () => Visibility(
+                  visible: !_resendCodeEnable.value,
+                  child: RichText(
+                    text: TextSpan(
+                        text: "This code will expire in ",
+                        style: TextStyle(color: Colors.grey),
+                        children: [
+                          TextSpan(
+                            text: "${_remainingTime} s",
+                            style: TextStyle(
+                              color: AppColors.themeColor,
+                            ),
+                          )
+                        ]),
+                  ),
+                ),
               ),
-              TextButton(onPressed: () {
-                
-              }, child: Text("Resend Code", style: TextStyle(color: Colors.grey),))
+              Obx(
+                () => Visibility(
+                  visible: _resendCodeEnable.value,
+                  child: TextButton(
+                      onPressed: () {
+                        _startResendTimer();
+                      },
+                      child: Text(
+                        "Resend Code",
+                        style: TextStyle(color: Colors.grey),
+                      )),
+                ),
+              )
             ],
           ),
         ),
       ),
     );
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    timer.cancel();
   }
 }
