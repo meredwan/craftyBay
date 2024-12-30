@@ -1,8 +1,8 @@
-import 'package:crafty_bay/app/app_colors.dart';
 import 'package:crafty_bay/features/auth/ui/screens/otp_verification_screen.dart';
-import 'package:crafty_bay/features/common/widgets/app_icon_widget.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+
+import '../../../common/ui/widgets/app_icon_widget.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});

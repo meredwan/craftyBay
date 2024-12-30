@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:crafty_bay/app/app_colors.dart';
 import 'package:crafty_bay/app/app_constants.dart';
 import 'package:crafty_bay/features/auth/ui/screens/completed_profile_screen.dart';
-import 'package:crafty_bay/features/common/widgets/app_icon_widget.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+
+import '../../../common/ui/widgets/app_icon_widget.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});
