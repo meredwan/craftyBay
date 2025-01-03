@@ -1,11 +1,9 @@
-import 'package:crafty_bay/features/auth/ui/screens/verify_email_screen.dart';
 import 'package:crafty_bay/features/common/ui/screens/main_bottom_nav_screen.dart';
-import 'package:crafty_bay/features/home/ui/screen/home_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../../../common/ui/widgets/app_icon_widget.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const String name='/';
   const SplashScreen({super.key});
 
   @override

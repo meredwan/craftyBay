@@ -1,3 +1,4 @@
+import 'package:crafty_bay/features/categoryListScreen/ui/screen/category_list_screen.dart';
 import 'package:crafty_bay/features/common/controllers/main_bottom_nav_controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,8 @@ import '../../../home/ui/screen/home_screen.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
   const MainBottomNavScreen({super.key});
-  static const String name='/main-nav-screen';
+
+  static const String name = '/main-nav-screen';
 
   @override
   State<MainBottomNavScreen> createState() => _MainBottomNavScreenState();
@@ -15,7 +17,7 @@ class MainBottomNavScreen extends StatefulWidget {
 class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
-    HomeScreen(),
+    CategoryListScreen(),
     HomeScreen(),
     HomeScreen(),
   ];
