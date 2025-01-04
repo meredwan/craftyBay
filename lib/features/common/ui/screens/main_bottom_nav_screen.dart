@@ -1,5 +1,7 @@
 import 'package:crafty_bay/features/categoryListScreen/ui/screen/category_list_screen.dart';
 import 'package:crafty_bay/features/common/controllers/main_bottom_nav_controllers.dart';
+import 'package:crafty_bay/features/product/ui/screen/product_details_screen.dart';
+import 'package:crafty_bay/features/wishlist/ui/screen/wish_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +21,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     HomeScreen(),
     CategoryListScreen(),
     HomeScreen(),
-    HomeScreen(),
+    WishListScreen()
   ];
 
   @override
