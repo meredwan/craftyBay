@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:crafty_bay/app/assets_path.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../app/app_colors.dart';
@@ -40,6 +41,7 @@ class _ProductCarouselSliderState extends State<ProductCarouselSlider> {
                     'text $i',
                     style: TextStyle(fontSize: 16.0, color: Colors.white),
                   ),
+                  // child: Image.asset(AssetsPath.navBarAppLogoSvg),
                 );
               },
             );
